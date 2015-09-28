@@ -1,0 +1,183 @@
+
+错误Response：
+{
+  err_no: 123124124,
+  msg: "这是一个神奇的错误"
+}
+
+
+
+用户
+
+ 0.用户手机号登录/注册 (发送验证码)
+   POST
+   /api/user/vcode/
+   Paramter: { "number": 13212345678 }
+   Response:  Http_200_OK
+   
+ 1.验证码验证
+   POST
+   api/user/vcode/verify/
+   Paramter: { "vcode": 888888 }
+   Response:
+
+   Http_200_OK
+   {
+   	 "token":"xxxxxxxxxxxxxxxxxxx"
+   }
+
+ 首页:
+
+  0.首页推荐:
+   GET
+   /api/mainpage/recommend/<username>/  //usrname是为以后个性化推荐留的入口
+   Response:
+   {
+    "next": "下一页的url",
+    "previous": "上一页的url",
+   	"results": [
+        {
+        	"id" : 1 //菜式id
+        	"name":"菜名"，
+        	"up_count": 123125  //点赞数
+        	"by": {
+        	     "name":"用户名"，
+                 "avatar":"头像url"
+        	 }
+
+        },
+        ...
+   	]
+   }
+   1.首页banner
+   GET
+   /api/mainpage/banner/
+   {
+    "next": "下一页的url",
+    "previous": "上一页的url",
+   	"results": [
+        {
+        	"image": "banner图url"
+        },
+   	]
+   }
+
+
+食谱
+
+ 0.菜式详情
+   GET
+   /api/recipe/<id>
+   Response:  {
+      "name":"名称",
+      "introduction":"简介"，
+      "material": [
+      	{"name": "食材名称", "buy": "购买信息（一期不做待定)", "amount":"数量"}
+      	...
+      ]
+      "steps": [
+         {
+           "section": 1, //步骤序号
+           "description": "文字描述",
+     	   "image":"照片url" 
+         }
+      ]
+   }
+  1. 菜式评论
+   GET
+   /api/recipe/<id>/comments
+   Response:  {
+    "next": "下一页的url",
+    "previous": "上一页的url",
+   	"results": [
+        {
+        	"id": "评论id",
+        	"comment": "评论内容",
+        	"by" : {
+        		"name":"用户名",
+        		"avatar":"头像",
+        	},
+        	"talk":[
+        		//暂时没考虑清楚怎么支持评论之间的对话
+        	],
+        	"time": "发布时间"    	
+        },
+        ...
+   	]
+   }
+   2. 发表菜式评论
+   POST
+   /api/recipe/<id>/comments
+   Parameter: {
+    "by": "用户名"
+    "comment": "评论内容" 
+   }
+   Response:  Http_202_ACCEPT
+
+   3. 收藏／点赞
+   GET
+   /api/recipe/<id>/up
+   /api/recipe/<id>/down
+   Response: Http_200_ACCEPT
+
+   4.发布菜谱
+    待定... ...
+
+
+分类
+0.分类页详情
+   GET
+   /api/category/
+   Response:  {
+    "next": "下一页的url",
+    "previous": "上一页的url",
+   	"results": [
+   	    {"id": 123123, //分类id
+   	     image":"分类图片"， "name":"分类名称", "recipe_count":"分类中的菜谱数量"}
+   	    ...
+   	]
+   }
+1.分类列表
+ GET
+ /api/category/<id>
+ {
+    "next": "下一页的url",
+    "previous": "上一页的url",
+   	"results": [
+        {
+        	"id" : 1 //菜式id
+        	"name":"菜名"，
+        	"up_count": 123125  //点赞数
+        	"by": {
+        	     "name":"用户名"，
+                 "avatar":"头像url"
+        	 }
+
+        },
+        ...
+   	]
+   }
+
+
+个人:
+0.个人信息
+   GET
+   /api/user/<username>/
+   Response {
+   	 "name":"名称"，
+   	 "avatar":"头像",
+   	 "sex": "性别",
+   	 "signature": "签名"
+   }
+
+ 1.我的菜谱
+   GET
+   /api/user/<username>/myrecipe/
+   Response 
+     参考首页推荐
+ 2.我的收藏
+   GET
+   /api/user/<username>/bookmark/
+   Response 
+     参考首页推荐
+
