@@ -23,8 +23,8 @@ class StepSerializer(serializers.ModelSerializer):
 
 class RecipeDetailSerializer(serializers.ModelSerializer):
 	author = UserBasicSerializer(read_only=True)
-	materials = RecipeMaterialSerializer(many=True)
-	steps = StepSerializer(many=True)
+	materials = RecipeMaterialSerializer(many=True, read_only=True)
+	steps = StepSerializer(many=True,read_only=True)
 	class Meta:
 		model = Recipe
 

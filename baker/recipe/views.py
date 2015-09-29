@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 # Create your views here.
 
 from .serializers import *
 from rest_framework import generics
+from usr.models import *
 
 
 class RecipeList(generics.ListCreateAPIView):
@@ -33,4 +34,17 @@ class RecipeCommentList(generics.ListCreateAPIView):
 		recipeid = self.kwargs.get('pk')
 		queryset = Comment.objects.filter(recipe=recipeid)
 		return queryset
+
+class MyRecipeList(generics.ListAPIView):
+	serializer_class = RecipeBasicSerializer
+	def get_queryset(self):
+		usr = get_object_or_404(User, name=self.kwargs.get("name"))
+		return Recipe.objects.filter(author = usr.id)
+
+class MyFavList(generics.ListAPIView):
+	serializer_class = RecipeBasicSerializer
+	def get_queryset(self):
+		usr = get_object_or_404(User, name=self.kwargs.get("name"))
+		#return Recipe.objects.filter(bookmark_by__contains = usr.id)
+		return usr.bookmarks
 
