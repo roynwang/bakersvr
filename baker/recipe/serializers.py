@@ -29,6 +29,8 @@ class RecipeDetailSerializer(serializers.ModelSerializer):
 		model = Recipe
 
 class CommentSerializer(serializers.ModelSerializer):
+	reply_to_detail = UserBasicSerializer(read_only=True, source="reply_to")
+	by_detail = UserBasicSerializer(read_only=True, source="by")
 	class Meta:
 		model = Comment
 
