@@ -13,7 +13,7 @@ class MaterialSerializer(serializers.ModelSerializer):
 		model = Material
 
 class RecipeMaterialSerializer(serializers.ModelSerializer):
-	material = MaterialSerializer(read_only=True)
+	material_detail = MaterialSerializer(read_only=True)
 	class Meta:
 		model = RecipeMaterial
 
@@ -28,12 +28,15 @@ class RecipeDetailSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Recipe
 
+class CommentSimpleSerializer(serializers.ModelSerializer):
+	by_detail = UserBasicSerializer(read_only=True, source="by")
+	class Meta:
+		model = Comment
+
 class CommentSerializer(serializers.ModelSerializer):
 	reply_to_detail = CommentSimpleSerializer(read_only=True, source="reply_to")
 	by_detail = UserBasicSerializer(read_only=True, source="by")
 	class Meta:
 		model = Comment
 
-class CommentSimpleSerializer(serializers.ModelSerializer):
-	class Meta:
-		model = Comment
+
