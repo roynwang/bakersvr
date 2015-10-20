@@ -39,4 +39,14 @@ class CommentSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Comment
 
+class CategeorySimpleSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = Categeory
+
+class CategeorySerializer(serializers.ModelSerializer):
+	recipe_set = RecipeBasicSerializer(read_only=True, many=True)
+	class Meta:
+		model = Categeory
+
+
 

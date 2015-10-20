@@ -2,6 +2,8 @@ from django.db import models
 from usr.models import *
 
 # Create your models here.
+
+
 class Material(models.Model):
 	id = models.AutoField(primary_key=True)
 	name = models.CharField(max_length=64)
@@ -21,6 +23,7 @@ class Recipe(models.Model):
 	bookmark_by = models.ManyToManyField("usr.User", related_name="bookmarks")
 	author = models.ForeignKey("usr.User",related_name="my_post")
 	created = models.DateTimeField(auto_now_add=True)
+	recipe_cate = models.ForeignKey("Categeory", null=True)
 
 	def __unicode__(self):
 		return self.name
@@ -56,4 +59,10 @@ class Comment(models.Model):
 
 	def __unicode__(self):
 		return self.comment
+
+class Categeory(models.Model):
+	id = models.AutoField(primary_key=True)
+	name = models.CharField(max_length=64)
+	pic = models.CharField(max_length=256)
+
 

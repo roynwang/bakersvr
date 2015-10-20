@@ -48,3 +48,12 @@ class MyFavList(generics.ListAPIView):
 		#return Recipe.objects.filter(bookmark_by__contains = usr.id)
 		return usr.bookmarks
 
+class CateList(generics.ListCreateAPIView):
+	serializer_class = CategeorySerializer 
+	queryset = Categeory.objects.all()
+	pagination_class = None
+	
+class CateItem(generics.RetrieveUpdateAPIView):
+	serializer_class = CategeorySerializer 
+	queryset = Categeory.objects.all()
+	pagination_class = None
