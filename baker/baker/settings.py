@@ -39,6 +39,7 @@ INSTALLED_APPS = (
 		'django.contrib.messages',
 		'django.contrib.staticfiles',
 		'rest_framework',
+		'smsverify',
 		'usr',
 		'recipe',
 		)
@@ -141,3 +142,14 @@ JWT_AUTH = {
 		'JWT_EXPIRATION_DELTA':datetime.timedelta(days=30),
 		}
 
+UCPAASHOST = "https://api.ucpaas.com"
+UCPAASPORT = ""
+UCPAASSOFTVER = "2014-06-30"
+UCPAASJSON = "json"
+UCPAASXML = "xml"
+UCPAASSID = "f52a037bfe68d879caa7aa88681b32ca"
+UCPAASTOKEN = "6115f06113d62abe266fccc9af07cf22"
+UCPAASAPPID = "6645449487fa4105bdfa2487ba88d2cf"
+UCPAASTEMPLATE = 13286
+
+DEFAULT_AVATAR = "http://7xiwfp.com1.z0.glb.clouddn.com/default_avatar.png"

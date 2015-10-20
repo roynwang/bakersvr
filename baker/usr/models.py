@@ -10,6 +10,7 @@ class VCode(models.Model):
 class User(models.Model):
 	id = models.AutoField(primary_key=True)
 	name = models.CharField(max_length=64, db_index=True, unique=True)
+	displayname = models.CharField(max_length=64, db_index=True, unique=True)
 	avatar = models.CharField(max_length=256)
 	signature = models.CharField(max_length=256)
 	created = models.DateTimeField(auto_now=True)
