@@ -70,7 +70,8 @@ class SMSVerify(APIView):
 		ret = None
 		print request.GET
 		if str(sms.vcode) == request.GET["vcode"]:
-			ret = Response(self.get_or_create_user_return_token(number) , status=status.HTTP_200_OK)
+			#ret = Response(self.get_or_create_user_return_token(number) , status=status.HTTP_200_OK)
+			ret = Response({"result":"success"}, status=status.HTTP_200_OK)
 			#generate token
 			sms.vcode = randint(100000,999999)
 			sms.save()
