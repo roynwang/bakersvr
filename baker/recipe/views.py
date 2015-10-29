@@ -49,11 +49,12 @@ class MyFavList(generics.ListAPIView):
 		return usr.bookmarks
 
 class CateList(generics.ListCreateAPIView):
-	serializer_class = CategeorySerializer 
+	serializer_class = CategeorySimpleSerializer 
 	queryset = Categeory.objects.all()
 	pagination_class = None
 	
-class CateItem(generics.RetrieveUpdateAPIView):
-	serializer_class = CategeorySerializer 
-	queryset = Categeory.objects.all()
-	pagination_class = None
+class CateItem(generics.ListAPIView):
+	serializer_class = RecipeBasicSerializer
+	def get_queryset(self):
+		return get_object_or_404(Categeory, pk=self.kwargs.get("pk")).recipe_set
+	
