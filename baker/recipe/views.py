@@ -63,3 +63,7 @@ class BannerList(generics.ListCreateAPIView):
 	serializer_class = BannerSerializer 
 	queryset = Banner.objects.all()
 	pagination_class = None
+
+class BannerItem(generics.RetrieveUpdateDestroyAPIView):
+	serializer_class = BannerSerializer 
+	queryset = Banner.objects.all()
