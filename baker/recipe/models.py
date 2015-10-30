@@ -37,8 +37,6 @@ class RecipeMaterial(models.Model):
 	def __unicode__(self):
 		return self.material.name
 
-
-
 class Step(models.Model):
 	id = models.AutoField(primary_key=True)
 	recipe = models.ForeignKey(Recipe, related_name="steps")
@@ -65,4 +63,8 @@ class Categeory(models.Model):
 	name = models.CharField(max_length=64)
 	pic = models.CharField(max_length=256)
 
-
+class Banner(models.Model):
+	id = models.AutoField(primary_key=True)
+	url = models.CharField(max_length=512)
+	pic = models.CharField(max_length=256)
+	

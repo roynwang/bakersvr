@@ -58,3 +58,8 @@ class CateItem(generics.ListAPIView):
 	def get_queryset(self):
 		return get_object_or_404(Categeory, pk=self.kwargs.get("pk")).recipe_set
 	
+
+class BannerList(generics.ListCreateAPIView):
+	serializer_class = BannerSerializer 
+	queryset = Banner.objects.all()
+	pagination_class = None

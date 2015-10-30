@@ -48,5 +48,7 @@ class CategeorySerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Categeory
 
-
+class BannerSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = Banner
 
